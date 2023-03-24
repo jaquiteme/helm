@@ -1,0 +1,4 @@
+deploymentReplicas: 3
+containerImage: 202047/todo-app-front:latest 
+containerPort: 80
+servicePort: 8080

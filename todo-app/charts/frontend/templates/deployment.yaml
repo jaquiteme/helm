@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ printf "%s-%s" .Release.Name "frontend-deployment" }}
+  labels:
+    app: {{ printf "%s-%s" .Release.Name "frontend" }}
+spec:
+  replicas: {{ .Values.deploymentReplicas }} 
+  selector:
+    matchLabels:
+      app: {{ printf "%s-%s" .Release.Name "frontend" }}
+  template:
+    metadata:
+      labels:
+        app: {{ printf "%s-%s" .Release.Name "frontend" }}
+    spec:
+      containers:
+      - name: node-prod
+        image: {{ .Values.containerImage | quote }}
+        ports:
+        - containerPort: {{ .Values.containerPort }}
